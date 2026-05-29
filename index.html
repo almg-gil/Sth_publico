@@ -1212,26 +1212,7 @@
           <details class="accordion" open>
             <summary>Definição</summary>
             <div class="accordion-content">
-              <div class="field-block">
-                <span class="field-label">Termo</span>
-                <div class="text-block">${escapeHtml(term.termo || "—")}</div>
-              </div>
-
-              ${
-                term.conceito
-                  ? `
-                    <div class="field-block">
-                      <span class="field-label">Conceito</span>
-                      <div class="text-block">${escapeHtml(term.conceito)}</div>
-                    </div>
-                  `
-                  : ""
-              }
-
-              <div class="field-block">
-                <span class="field-label">Definição</span>
-                <div class="text-block">${escapeHtml(term.definicao || "—")}</div>
-              </div>
+              <div class="text-block">${escapeHtml(term.definicao || "—")}</div>
             </div>
           </details>
 
