@@ -10,12 +10,14 @@
     :root {
       --border: #d8d8d8;
       --muted: #666;
-      --soft: #f7f7f7;
+      --soft: #f4f3ef;
       --selected: #e8f0fe;
-      --blue: #1f5fbf;
+      --teal: #007f92;
+      --teal-dark: #006676;
+      --red: #b40000;
       --blue-dark: #0b2a57;
-      --left-width: 500px;
-      --header-height: 54px;
+      --left-width: 430px;
+      --page-width: 1180px;
     }
 
     * {
@@ -25,69 +27,256 @@
     body {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
-      font-size: 14px;
+      font-size: 16px;
       color: #111;
       background: #fff;
     }
 
-    header {
-      height: var(--header-height);
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 0 16px;
-      background: #fff;
+    .top-line {
+      height: 3px;
+      background: linear-gradient(
+        to right,
+        #ddd 0,
+        #ddd 72%,
+        var(--red) 72%,
+        var(--red) 78%,
+        #ddd 78%,
+        #ddd 100%
+      );
     }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      min-width: 0;
+    .page {
+      width: min(var(--page-width), calc(100vw - 32px));
+      margin: 0 auto;
+      padding: 28px 0 36px;
     }
 
-    .brand img {
-      height: 32px;
+    .brand-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+
+    .brand-row img {
+      height: 42px;
       width: auto;
       display: block;
     }
 
-    .brand-title {
-      min-width: 0;
-    }
-
-    .brand-title strong {
-      display: block;
-      font-size: 16px;
+    .brand-row .brand-title {
       color: var(--blue-dark);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 1.2;
     }
 
-    .brand-title span {
-      display: block;
-      margin-top: 1px;
-      color: var(--muted);
-      font-size: 12px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+    .hero {
+      margin-bottom: 24px;
     }
 
-    .header-status {
+    .hero h1 {
+      margin: 0 0 26px;
+      font-size: 34px;
+      line-height: 1.1;
+      letter-spacing: 0.01em;
+      color: #050b14;
+      text-transform: uppercase;
+    }
+
+    .hero-text {
+      max-width: 980px;
+      font-size: 20px;
+      line-height: 1.55;
+      margin: 0 0 24px;
+    }
+
+    .hero-text strong {
+      font-weight: 700;
+    }
+
+    .highlight {
+      background: #f3cfc8;
+      padding: 2px 4px;
+    }
+
+    .hero-list {
+      margin: 0 0 28px 26px;
+      padding: 0;
+      font-size: 19px;
+      line-height: 1.55;
+    }
+
+    .hero-list strong {
+      font-weight: 700;
+    }
+
+    .search-card {
+      border: 1px solid var(--border);
+      background: var(--soft);
+      margin: 0 0 28px;
+    }
+
+    .search-card-header {
+      min-height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 0 18px;
+      background: var(--teal);
+      color: #fff;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.01em;
+    }
+
+    .search-card-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .search-icon {
+      width: 24px;
+      height: 24px;
+      display: inline-block;
+      position: relative;
+      flex: 0 0 auto;
+    }
+
+    .search-icon::before {
+      content: "";
+      position: absolute;
+      width: 13px;
+      height: 13px;
+      border: 2px solid #fff;
+      border-radius: 50%;
+      left: 1px;
+      top: 1px;
+    }
+
+    .search-icon::after {
+      content: "";
+      position: absolute;
+      width: 10px;
+      height: 2px;
+      background: #fff;
+      transform: rotate(45deg);
+      left: 13px;
+      top: 16px;
+      border-radius: 2px;
+    }
+
+    .search-card-body {
+      padding: 26px 30px 18px;
+    }
+
+    .search-field {
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      border: 1px solid #bbb;
+      border-radius: 6px;
+      overflow: hidden;
+      background: #fff;
+      margin-bottom: 18px;
+    }
+
+    .search-field label {
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      background: #e5e3dc;
+      border-right: 1px solid #bbb;
+      min-height: 52px;
+      font-size: 17px;
+    }
+
+    .search-field input {
+      border: 0;
+      padding: 0 16px;
+      font-size: 17px;
+      min-width: 0;
+      outline: none;
+    }
+
+    .search-actions {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: #fff;
+      padding: 7px 10px;
+      border-radius: 4px;
+    }
+
+    button:hover {
+      background: #f3f3f3;
+    }
+
+    button.primary {
+      border-color: var(--teal);
+      color: #fff;
+      background: var(--teal);
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 12px 24px;
+      border-radius: 6px;
+    }
+
+    button.primary:hover {
+      background: var(--teal-dark);
+    }
+
+    button.light {
+      border-color: #c5c5c5;
+      background: #fff;
+      color: #222;
+      padding: 10px 18px;
+      border-radius: 6px;
+    }
+
+    .status-line {
       color: var(--muted);
-      font-size: 12px;
+      font-size: 13px;
       text-align: right;
-      white-space: nowrap;
+      margin: -16px 0 18px;
+    }
+
+    .consultation-shell {
+      border: 1px solid var(--border);
+      background: #fff;
+    }
+
+    .consultation-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      background: #fafafa;
+    }
+
+    .consultation-title strong {
+      font-size: 17px;
+    }
+
+    .consultation-title span {
+      color: var(--muted);
+      font-size: 13px;
     }
 
     .app {
-      height: calc(100vh - var(--header-height));
+      height: 680px;
       display: grid;
-      grid-template-columns: var(--left-width) 1fr;
+      grid-template-columns: var(--left-width) 7px 1fr;
     }
 
     .left {
@@ -95,6 +284,37 @@
       padding: 12px;
       overflow: auto;
       background: #fff;
+    }
+
+    .splitter {
+      cursor: col-resize;
+      background: #f4f4f4;
+      border-left: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      position: relative;
+    }
+
+    .splitter::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 2px;
+      width: 1px;
+      height: 42px;
+      transform: translateY(-50%);
+      background: #aaa;
+      box-shadow: 2px 0 0 #aaa;
+      opacity: 0.7;
+    }
+
+    .splitter:hover,
+    .splitter.resizing {
+      background: var(--selected);
+    }
+
+    body.resizing {
+      cursor: col-resize;
+      user-select: none;
     }
 
     .right {
@@ -108,53 +328,16 @@
       margin: 0 0 8px;
     }
 
-    .search-row {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 6px;
-      margin-bottom: 8px;
-    }
-
-    .toolbar {
+    .tree-toolbar {
       display: flex;
       gap: 6px;
       flex-wrap: wrap;
       margin-bottom: 10px;
     }
 
-    input,
-    button {
-      font: inherit;
-    }
-
-    input {
-      width: 100%;
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 7px;
-      background: #fff;
-    }
-
-    button {
-      cursor: pointer;
-      border: 1px solid var(--border);
-      background: #fff;
+    .tree-toolbar button {
+      font-size: 14px;
       padding: 6px 9px;
-      border-radius: 4px;
-    }
-
-    button:hover {
-      background: #f3f3f3;
-    }
-
-    button.primary {
-      border-color: var(--blue);
-      color: #fff;
-      background: var(--blue);
-    }
-
-    button.primary:hover {
-      background: #184f9f;
     }
 
     .tree-box {
@@ -173,6 +356,7 @@
       padding: 3px 6px;
       border-radius: 4px;
       white-space: nowrap;
+      font-size: 15px;
     }
 
     .tree-item:hover {
@@ -231,8 +415,8 @@
       margin-bottom: 14px;
     }
 
-    .term-header h1 {
-      font-size: 24px;
+    .term-header h2 {
+      font-size: 26px;
       margin: 0 0 4px;
       font-weight: normal;
       color: #111;
@@ -258,6 +442,7 @@
       background: transparent;
       border-radius: 4px 4px 0 0;
       white-space: nowrap;
+      font-size: 15px;
     }
 
     .tab.active {
@@ -280,6 +465,7 @@
       padding: 12px;
       margin-bottom: 10px;
       background: #fff;
+      font-size: 15px;
     }
 
     .info-box strong {
@@ -306,8 +492,9 @@
 
     .object-links a {
       display: inline-block;
-      color: var(--blue);
+      color: var(--teal);
       text-decoration: none;
+      font-weight: 700;
     }
 
     .object-links a:hover {
@@ -315,13 +502,14 @@
     }
 
     .link-button {
-      color: var(--blue);
+      color: var(--teal);
       border: 0;
       padding: 0;
       background: transparent;
       text-align: left;
       cursor: pointer;
       line-height: 1.4;
+      font-weight: 700;
     }
 
     .link-button:hover {
@@ -353,7 +541,7 @@
     .summary-card {
       border: 1px solid var(--border);
       border-radius: 6px;
-      background: var(--soft);
+      background: #f7f7f7;
       padding: 10px;
     }
 
@@ -370,27 +558,60 @@
 
     @media (max-width: 1000px) {
       :root {
-        --left-width: 420px;
+        --left-width: 380px;
+      }
+
+      .hero h1 {
+        font-size: 30px;
+      }
+
+      .hero-text,
+      .hero-list {
+        font-size: 18px;
       }
     }
 
     @media (max-width: 850px) {
-      header {
-        height: auto;
-        min-height: var(--header-height);
-        align-items: flex-start;
-        flex-direction: column;
-        padding: 10px 12px;
+      .page {
+        width: min(100vw - 20px, var(--page-width));
+        padding-top: 18px;
       }
 
-      .header-status {
-        text-align: left;
-        white-space: normal;
+      .hero h1 {
+        font-size: 28px;
+        margin-bottom: 18px;
+      }
+
+      .hero-text,
+      .hero-list {
+        font-size: 16px;
+      }
+
+      .search-card-body {
+        padding: 18px 14px;
+      }
+
+      .search-field {
+        grid-template-columns: 1fr;
+      }
+
+      .search-field label {
+        border-right: 0;
+        border-bottom: 1px solid #bbb;
+        min-height: 42px;
+      }
+
+      .search-field input {
+        min-height: 46px;
       }
 
       .app {
         grid-template-columns: 1fr;
         height: auto;
+      }
+
+      .splitter {
+        display: none;
       }
 
       .left {
@@ -409,48 +630,94 @@
       .summary-grid {
         grid-template-columns: 1fr;
       }
+
+      .status-line {
+        text-align: left;
+        margin-top: -10px;
+      }
     }
   </style>
 </head>
 
 <body>
-  <header>
-    <div class="brand">
+  <div class="top-line"></div>
+
+  <div class="page">
+    <div class="brand-row">
       <img src="assets/logo-almg.png" alt="Assembleia Legislativa de Minas Gerais">
-      <div class="brand-title">
-        <strong>Consulta ao Thesaurus GCT-GDI</strong>
-        <span>Visualização da hierarquia, definições, notas, relacionamentos e objetos indexados</span>
-      </div>
+      <div class="brand-title">Assembleia Legislativa de Minas Gerais</div>
     </div>
 
-    <div id="headerStatus" class="header-status">Carregando dados...</div>
-  </header>
+    <section class="hero">
+      <h1>Thesaurus</h1>
 
-  <main class="app">
-    <aside class="left">
-      <div class="section-title">Hierarquia</div>
+      <p class="hero-text">
+        O <strong>Thesaurus</strong> é o
+        <span class="highlight">instrumento de controle da linguagem de indexação</span>.
+        É utilizado para indexar:
+      </p>
 
-      <div class="search-row">
-        <input id="searchInput" type="search" placeholder="Pesquisar termo, definição, nota ou UP" />
-        <button id="clearSearchBtn" type="button">limpar</button>
-      </div>
+      <ul class="hero-list">
+        <li><strong>Normas</strong> jurídicas estaduais</li>
+        <li><strong>Proposições</strong> que tramitam na ALMG</li>
+        <li><strong>Pronunciamentos</strong> proferidos no Plenário pelos parlamentares e por outras autoridades.</li>
+      </ul>
 
-      <div class="toolbar">
-        <button id="collapseBtn" type="button">Recolher</button>
-        <button id="expandClassesBtn" type="button">Expandir classes</button>
-      </div>
+      <section class="search-card" aria-label="Pesquisar Thesaurus">
+        <div class="search-card-header">
+          <div class="search-card-title">
+            <span class="search-icon" aria-hidden="true"></span>
+            <span>Pesquisar Thesaurus</span>
+          </div>
+          <span aria-hidden="true">⌃</span>
+        </div>
 
-      <div id="tree" class="tree-box">
-        <div class="empty">Carregando termos...</div>
-      </div>
-    </aside>
+        <div class="search-card-body">
+          <div class="search-field">
+            <label for="searchInput">Assunto</label>
+            <input id="searchInput" type="search" placeholder="Digite um termo, definição, nota ou sinônimo" />
+          </div>
 
-    <section class="right">
-      <div id="termArea">
-        <div class="empty">Carregando thesaurus...</div>
-      </div>
+          <div class="search-actions">
+            <button id="searchBtn" class="primary" type="button">Pesquisar</button>
+            <button id="clearSearchBtn" class="light" type="button">Limpar</button>
+          </div>
+        </div>
+      </section>
     </section>
-  </main>
+
+    <div id="headerStatus" class="status-line">Carregando dados...</div>
+
+    <section class="consultation-shell">
+      <div class="consultation-title">
+        <strong>Resultado da consulta</strong>
+        <span>Selecione um termo na hierarquia para ver definições, notas, relacionamentos e objetos indexados.</span>
+      </div>
+
+      <main class="app">
+        <aside class="left">
+          <div class="section-title">Hierarquia</div>
+
+          <div class="tree-toolbar">
+            <button id="collapseBtn" type="button">Recolher</button>
+            <button id="expandClassesBtn" type="button">Expandir classes</button>
+          </div>
+
+          <div id="tree" class="tree-box">
+            <div class="empty">Carregando termos...</div>
+          </div>
+        </aside>
+
+        <div id="splitter" class="splitter" title="Arraste para redimensionar as áreas"></div>
+
+        <section class="right">
+          <div id="termArea">
+            <div class="empty">Carregando thesaurus...</div>
+          </div>
+        </section>
+      </main>
+    </section>
+  </div>
 
   <script>
     // ============================================================
@@ -474,10 +741,13 @@
     const treeEl = document.getElementById("tree");
     const termArea = document.getElementById("termArea");
     const searchInput = document.getElementById("searchInput");
+    const searchBtn = document.getElementById("searchBtn");
     const clearSearchBtn = document.getElementById("clearSearchBtn");
     const collapseBtn = document.getElementById("collapseBtn");
     const expandClassesBtn = document.getElementById("expandClassesBtn");
     const headerStatus = document.getElementById("headerStatus");
+    const splitter = document.getElementById("splitter");
+    const LAYOUT_KEY = "consulta_thesaurus_left_width";
 
     const ICMG_CLASSES_SEM_RAIZ = new Set([
       "sem classe",
@@ -493,7 +763,21 @@
     ]);
 
     document.addEventListener("DOMContentLoaded", () => {
-      searchInput.addEventListener("input", () => renderTree());
+      initResizableLayout();
+
+      searchInput.addEventListener("input", () => {
+        // Atualiza a árvore enquanto digita, mas sem rolar a página.
+        renderTree();
+      });
+
+      searchInput.addEventListener("keydown", event => {
+        if (event.key === "Enter") {
+          event.preventDefault();
+          runSearch();
+        }
+      });
+
+      searchBtn.addEventListener("click", runSearch);
 
       clearSearchBtn.addEventListener("click", () => {
         searchInput.value = "";
@@ -520,6 +804,82 @@
 
       loadState();
     });
+
+    function runSearch() {
+      const query = searchInput.value.trim();
+      renderTree();
+
+      if (!query) {
+        return;
+      }
+
+      const firstMatch = state.terms.find(term => matchesTerm(term, query));
+
+      if (firstMatch) {
+        openTerm(firstMatch.id);
+      }
+
+      document.querySelector(".consultation-shell")?.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    }
+
+    function setLeftWidth(px) {
+      const min = 300;
+      const max = Math.max(380, window.innerWidth - 420);
+      const width = Math.min(Math.max(Number(px) || 430, min), max);
+
+      document.documentElement.style.setProperty("--left-width", `${width}px`);
+      localStorage.setItem(LAYOUT_KEY, String(width));
+    }
+
+    function initResizableLayout() {
+      if (!splitter) return;
+
+      const savedWidth = Number(localStorage.getItem(LAYOUT_KEY));
+
+      if (savedWidth) {
+        setLeftWidth(savedWidth);
+      }
+
+      let resizing = false;
+
+      splitter.addEventListener("pointerdown", event => {
+        resizing = true;
+        splitter.classList.add("resizing");
+        document.body.classList.add("resizing");
+        splitter.setPointerCapture(event.pointerId);
+      });
+
+      splitter.addEventListener("pointermove", event => {
+        if (!resizing) return;
+        setLeftWidth(event.clientX - document.querySelector(".page").getBoundingClientRect().left);
+      });
+
+      function stopResize(event) {
+        if (!resizing) return;
+
+        resizing = false;
+        splitter.classList.remove("resizing");
+        document.body.classList.remove("resizing");
+
+        if (event?.pointerId !== undefined) {
+          try {
+            splitter.releasePointerCapture(event.pointerId);
+          } catch {
+            // Sem ação: alguns navegadores já liberam automaticamente.
+          }
+        }
+      }
+
+      splitter.addEventListener("pointerup", stopResize);
+      splitter.addEventListener("pointercancel", stopResize);
+
+      splitter.addEventListener("dblclick", () => {
+        setLeftWidth(430);
+      });
+    }
 
     async function loadState() {
       try {
@@ -801,7 +1161,7 @@
 
       termArea.innerHTML = `
         <div class="term-header">
-          <h1>${escapeHtml(displayTermName(term))}</h1>
+          <h2>${escapeHtml(displayTermName(term))}</h2>
           <div class="muted">${escapeHtml(termPath(term))}</div>
         </div>
 
