@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Consulta ao Thesaurus GCT-GDI</title>
+  <title>Thesaurus ALMG</title>
   <link rel="icon" type="image/png" href="assets/favicom-almg.png">
 
   <style>
@@ -18,10 +18,17 @@
       --blue-dark: #0b2a57;
       --left-width: 500px;
       --page-width: 1680px;
+      --header-height: 96px;
+      --strip-height: 20px;
     }
 
     * {
       box-sizing: border-box;
+    }
+
+    html,
+    body {
+      height: 100%;
     }
 
     body {
@@ -30,198 +37,15 @@
       font-size: 16px;
       color: #111;
       background: #fff;
-    }
-
-    .portal-header {
-      background: #fff;
-      border-bottom: 0;
-    }
-
-    .portal-inner {
-      width: min(var(--page-width), calc(100vw - 56px));
-      min-height: 104px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      gap: 28px;
-    }
-
-    .portal-brand {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      min-width: 0;
-      text-decoration: none;
-      color: #050b14;
-    }
-
-    .portal-brand img {
-      height: 70px;
-      width: auto;
-      display: block;
-      flex: 0 0 auto;
-    }
-
-    .portal-brand-title {
-      font-size: 30px;
-      line-height: 1;
-      font-weight: 700;
-      letter-spacing: 0.01em;
-      text-transform: uppercase;
-      color: #050b14;
-      white-space: nowrap;
-    }
-
-    .portal-strip {
-      height: 24px;
-      background: #efefec;
-      border-top: 1px solid #f2f2f2;
-    }
-
-    .page {
-      width: min(var(--page-width), calc(100vw - 56px));
-      margin: 0 auto;
-      padding: 24px 0 36px;
-    }
-
-    .hero {
-      margin-bottom: 18px;
-    }
-
-    .hero h1 {
-      margin: 0;
-      font-size: 0;
-      line-height: 0;
-      height: 0;
       overflow: hidden;
     }
 
-    .hero-text {
-      display: none;
-    }
-
-    .hero-text strong {
-      font-weight: 700;
-    }
-
-    .highlight {
-      background: #f3cfc8;
-      padding: 2px 4px;
-    }
-
-    .hero-list {
-      display: none;
-    }
-
-    .hero-list strong {
-      font-weight: 700;
-    }
-
-    .search-card {
-      border: 1px solid var(--border);
-      background: var(--soft);
-      margin: 0 0 24px;
-    }
-
-    .search-card-header {
-      min-height: 52px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 0 18px;
-      background: var(--teal);
-      color: #fff;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.01em;
-    }
-
-    .search-card-title {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .search-icon {
-      width: 24px;
-      height: 24px;
-      display: inline-block;
-      position: relative;
-      flex: 0 0 auto;
-    }
-
-    .search-icon::before {
-      content: "";
-      position: absolute;
-      width: 13px;
-      height: 13px;
-      border: 2px solid #fff;
-      border-radius: 50%;
-      left: 1px;
-      top: 1px;
-    }
-
-    .search-icon::after {
-      content: "";
-      position: absolute;
-      width: 10px;
-      height: 2px;
-      background: #fff;
-      transform: rotate(45deg);
-      left: 13px;
-      top: 16px;
-      border-radius: 2px;
-    }
-
-    .search-card-body {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
-      gap: 12px 14px;
-      align-items: center;
-      padding: 18px 24px 20px;
-    }
-
-    .search-field {
-      display: grid;
-      grid-template-columns: 110px 1fr;
-      border: 1px solid #bbb;
-      border-radius: 6px;
-      overflow: hidden;
-      background: #fff;
-      margin-bottom: 0;
-      min-width: 0;
-    }
-
-    .search-field label {
-      display: flex;
-      align-items: center;
-      padding: 0 16px;
-      background: #e5e3dc;
-      border-right: 1px solid #bbb;
-      min-height: 44px;
-      font-size: 16px;
-    }
-
-    .search-field input {
-      border: 0;
-      padding: 0 14px;
-      font-size: 16px;
-      min-width: 0;
-      outline: none;
-    }
-
-    .search-actions {
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: nowrap;
+    button,
+    input {
+      font: inherit;
     }
 
     button {
-      font: inherit;
       cursor: pointer;
       border: 1px solid var(--border);
       background: #fff;
@@ -255,48 +79,208 @@
       border-radius: 6px;
     }
 
-    .status-line {
-      grid-column: 1 / -1;
-      color: var(--muted);
-      font-size: 13px;
-      text-align: right;
-      margin: 0;
-    }
-
-    .consultation-shell {
-      grid-column: 1 / -1;
-      border: 1px solid var(--border);
+    .portal-header {
+      height: var(--header-height);
       background: #fff;
-      margin-top: 6px;
     }
 
-    .consultation-title {
+    .portal-inner {
+      width: min(var(--page-width), calc(100vw - 56px));
+      height: 100%;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 20px;
+    }
+
+    .portal-brand {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      min-width: 0;
+      text-decoration: none;
+      color: #050b14;
+    }
+
+    .portal-brand img {
+      height: 68px;
+      width: auto;
+      display: block;
+      flex: 0 0 auto;
+    }
+
+    .portal-brand-title {
+      font-size: 30px;
+      line-height: 1;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      text-transform: uppercase;
+      color: #050b14;
+      white-space: nowrap;
+    }
+
+    .portal-strip {
+      height: var(--strip-height);
+      background: #efefec;
+      border-top: 1px solid #f2f2f2;
+    }
+
+    .page-shell {
+      width: min(var(--page-width), calc(100vw - 56px));
+      height: calc(100vh - var(--header-height) - var(--strip-height));
+      margin: 0 auto;
+      padding: 18px 0 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      min-height: 0;
+    }
+
+    .test-note {
+      flex: 0 0 auto;
+      padding: 10px 14px;
+      border-left: 5px solid var(--red);
+      background: #fff7f7;
+      color: #333;
+      font-size: 14px;
+      line-height: 1.35;
+    }
+
+    .test-note strong {
+      color: #8a0000;
+    }
+
+    .search-card {
+      flex: 0 0 auto;
+      border: 1px solid var(--border);
+      background: var(--soft);
+    }
+
+    .search-card-header {
+      min-height: 42px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      padding: 12px 16px;
+      padding: 0 16px;
+      background: var(--teal);
+      color: #fff;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.01em;
+    }
+
+    .search-card-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .search-icon {
+      width: 22px;
+      height: 22px;
+      display: inline-block;
+      position: relative;
+      flex: 0 0 auto;
+    }
+
+    .search-icon::before {
+      content: "";
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      border: 2px solid #fff;
+      border-radius: 50%;
+      left: 1px;
+      top: 1px;
+    }
+
+    .search-icon::after {
+      content: "";
+      position: absolute;
+      width: 10px;
+      height: 2px;
+      background: #fff;
+      transform: rotate(45deg);
+      left: 12px;
+      top: 15px;
+      border-radius: 2px;
+    }
+
+    .search-card-body {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto auto;
+      gap: 10px;
+      align-items: center;
+      padding: 14px 20px;
+    }
+
+    .search-field {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      border: 1px solid #bbb;
+      border-radius: 6px;
+      overflow: hidden;
+      background: #fff;
+      min-width: 0;
+    }
+
+    .search-field label {
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      background: #e5e3dc;
+      border-right: 1px solid #bbb;
+      min-height: 42px;
+      font-size: 16px;
+    }
+
+    .search-field input {
+      border: 0;
+      padding: 0 14px;
+      font-size: 16px;
+      min-width: 0;
+      outline: none;
+    }
+
+    .workspace {
+      flex: 1 1 auto;
+      min-height: 0;
+      border: 1px solid var(--border);
+      background: #fff;
+      display: grid;
+      grid-template-rows: auto 1fr;
+    }
+
+    .workspace-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 14px;
       border-bottom: 1px solid var(--border);
       background: #fafafa;
     }
 
-    .consultation-title strong {
+    .workspace-title strong {
       font-size: 17px;
     }
 
-    .consultation-title span {
+    .workspace-title span {
       color: var(--muted);
       font-size: 13px;
+      text-align: right;
     }
 
-    .app {
-      height: min(800px, calc(100vh - 220px));
-      min-height: 650px;
+    .workspace-body {
+      min-height: 0;
       display: grid;
       grid-template-columns: var(--left-width) 7px 1fr;
     }
 
     .left {
+      min-height: 0;
       border-right: 1px solid var(--border);
       padding: 14px;
       overflow: auto;
@@ -335,7 +319,8 @@
     }
 
     .right {
-      padding: 20px 26px;
+      min-height: 0;
+      padding: 18px 24px;
       overflow: auto;
       background: #fff;
     }
@@ -359,10 +344,10 @@
 
     .tree-box {
       border: 1px solid var(--border);
-      min-height: 360px;
+      min-height: 240px;
       padding: 6px;
       background: #fff;
-      overflow: auto;
+      overflow: visible;
     }
 
     .tree-item {
@@ -428,12 +413,12 @@
 
     .term-header {
       border-bottom: 1px solid var(--border);
-      padding-bottom: 12px;
-      margin-bottom: 14px;
+      padding-bottom: 10px;
+      margin-bottom: 12px;
     }
 
-    .term-header h2 {
-      font-size: 26px;
+    .term-header h1 {
+      font-size: 28px;
       margin: 0 0 4px;
       font-weight: normal;
       color: #111;
@@ -444,55 +429,96 @@
       font-size: 12px;
     }
 
-    .tabs {
-      display: flex;
-      border-bottom: 1px solid var(--border);
-      margin: 8px 0 12px;
-      gap: 2px;
-      overflow-x: auto;
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin: 0 0 12px;
     }
 
-    .tab {
-      padding: 8px 12px;
-      border: 1px solid transparent;
-      border-bottom: 0;
-      background: transparent;
-      border-radius: 4px 4px 0 0;
-      white-space: nowrap;
-      font-size: 15px;
+    .summary-card {
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: #f7f7f7;
+      padding: 9px 10px;
     }
 
-    .tab.active {
-      border-color: var(--border);
+    .summary-card strong {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 2px;
+    }
+
+    .summary-card span {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .accordion-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    details.accordion {
+      border: 1px solid var(--border);
+      border-radius: 6px;
       background: #fff;
-      font-weight: bold;
+      overflow: hidden;
     }
 
-    .panel {
+    details.accordion summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 11px 14px;
+      font-weight: 700;
+      background: #f7f7f7;
+      border-bottom: 1px solid transparent;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    details.accordion summary::-webkit-details-marker {
       display: none;
     }
 
-    .panel.active {
-      display: block;
+    details.accordion summary::after {
+      content: "▸";
+      font-size: 14px;
+      color: var(--muted);
     }
 
-    .info-box {
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 12px;
-      margin-bottom: 10px;
-      background: #fff;
-      font-size: 15px;
+    details.accordion[open] summary {
+      border-bottom-color: var(--border);
     }
 
-    .info-box strong {
-      display: block;
-      margin-bottom: 6px;
+    details.accordion[open] summary::after {
+      content: "▾";
+    }
+
+    .accordion-content {
+      padding: 12px 14px;
+      line-height: 1.5;
     }
 
     .text-block {
       white-space: pre-wrap;
       line-height: 1.5;
+    }
+
+    .field-block {
+      margin-bottom: 14px;
+    }
+
+    .field-block:last-child {
+      margin-bottom: 0;
+    }
+
+    .field-label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 4px;
     }
 
     .small-list {
@@ -548,72 +574,37 @@
       line-height: 1.5;
     }
 
-    .summary-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 8px;
-      margin: 0 0 12px;
-    }
-
-    .summary-card {
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      background: #f7f7f7;
-      padding: 10px;
-    }
-
-    .summary-card strong {
-      display: block;
-      font-size: 18px;
-      margin-bottom: 2px;
-    }
-
-    .summary-card span {
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    .test-note {
-      margin: 0 0 22px;
-      padding: 14px 18px;
-      border-left: 5px solid var(--red);
-      background: #fff7f7;
-      color: #333;
-      font-size: 15px;
-      line-height: 1.45;
-    }
-
-    .test-note strong {
-      color: #8a0000;
-    }
-
     @media (max-width: 1000px) {
       :root {
         --left-width: 420px;
       }
 
-      .hero h1 {
-        font-size: 30px;
+      .portal-brand img {
+        height: 58px;
       }
 
-      .hero-text,
-      .hero-list {
-        font-size: 18px;
+      .portal-brand-title {
+        font-size: 26px;
       }
     }
 
     @media (max-width: 850px) {
+      body {
+        overflow: auto;
+      }
+
+      .portal-header {
+        height: auto;
+      }
+
       .portal-inner {
         width: min(100vw - 20px, var(--page-width));
         min-height: auto;
         padding: 14px 0;
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 14px;
       }
 
       .portal-brand img {
-        height: 56px;
+        height: 54px;
       }
 
       .portal-brand-title {
@@ -621,23 +612,18 @@
       }
 
       .portal-strip {
-        height: 16px;
+        height: 14px;
       }
 
-      .page {
+      .page-shell {
         width: min(100vw - 20px, var(--page-width));
-        padding-top: 16px;
+        height: auto;
+        min-height: auto;
+        padding: 14px 0 22px;
       }
 
       .search-card-body {
-        display: grid;
         grid-template-columns: 1fr;
-        padding: 16px 14px;
-      }
-
-      .search-actions {
-        justify-content: center;
-        flex-wrap: wrap;
       }
 
       .search-field {
@@ -647,16 +633,29 @@
       .search-field label {
         border-right: 0;
         border-bottom: 1px solid #bbb;
-        min-height: 42px;
+        min-height: 40px;
       }
 
       .search-field input {
-        min-height: 46px;
+        min-height: 44px;
       }
 
-      .app {
-        grid-template-columns: 1fr;
-        height: auto;
+      .workspace {
+        display: block;
+      }
+
+      .workspace-title {
+        display: block;
+      }
+
+      .workspace-title span {
+        display: block;
+        margin-top: 4px;
+        text-align: left;
+      }
+
+      .workspace-body {
+        display: block;
       }
 
       .splitter {
@@ -666,22 +665,15 @@
       .left {
         border-right: 0;
         border-bottom: 1px solid var(--border);
+        max-height: 45vh;
       }
 
       .right {
         padding: 14px 12px;
       }
 
-      .tree-box {
-        max-height: 45vh;
-      }
-
       .summary-grid {
         grid-template-columns: 1fr;
-      }
-
-      .status-line {
-        text-align: left;
       }
     }
   </style>
@@ -694,75 +686,65 @@
         <img src="assets/logo-almg.png" alt="Assembleia Legislativa de Minas Gerais">
         <span class="portal-brand-title">Thesaurus</span>
       </a>
-
     </div>
   </header>
 
   <div class="portal-strip"></div>
 
-  <div class="page">
+  <div class="page-shell">
     <div class="test-note">
       <strong>Aviso:</strong> esta página não é uma página oficial da ALMG. Trata-se de um ambiente de teste desenvolvido pela Gerência de Informação Legislativa para fins de avaliação da consulta ao thesaurus.
     </div>
 
-    <section class="hero">
-      <h1>Thesaurus</h1>
+    <section class="search-card" aria-label="Pesquisar Thesaurus">
+      <div class="search-card-header">
+        <div class="search-card-title">
+          <span class="search-icon" aria-hidden="true"></span>
+          <span>Pesquisar Thesaurus</span>
+        </div>
+        <span id="headerStatus">Carregando dados...</span>
+      </div>
 
-      <section class="search-card" aria-label="Pesquisar Thesaurus">
-        <div class="search-card-header">
-          <div class="search-card-title">
-            <span class="search-icon" aria-hidden="true"></span>
-            <span>Pesquisar Thesaurus</span>
-          </div>
-          <span aria-hidden="true">⌃</span>
+      <div class="search-card-body">
+        <div class="search-field">
+          <label for="searchInput">Assunto</label>
+          <input id="searchInput" type="search" placeholder="Digite um termo, definição, nota ou sinônimo" />
         </div>
 
-        <div class="search-card-body">
-          <div class="search-field">
-            <label for="searchInput">Assunto</label>
-            <input id="searchInput" type="search" placeholder="Digite um termo, definição, nota ou sinônimo" />
-          </div>
-
-          <div class="search-actions">
-            <button id="searchBtn" class="primary" type="button">Pesquisar</button>
-            <button id="clearSearchBtn" class="light" type="button">Limpar</button>
-          </div>
-
-          <div id="headerStatus" class="status-line">Carregando dados...</div>
-
-          <section class="consultation-shell">
-            <div class="consultation-title">
-              <strong>Resultado da consulta</strong>
-              <span>Selecione um termo na hierarquia para ver definições, notas, relacionamentos e objetos indexados.</span>
-            </div>
-
-            <main class="app">
-              <aside class="left">
-                <div class="section-title">Hierarquia</div>
-
-                <div class="tree-toolbar">
-                  <button id="collapseBtn" type="button">Recolher</button>
-                  <button id="expandClassesBtn" type="button">Expandir classes</button>
-                </div>
-
-                <div id="tree" class="tree-box">
-                  <div class="empty">Carregando termos...</div>
-                </div>
-              </aside>
-
-              <div id="splitter" class="splitter" title="Arraste para redimensionar as áreas"></div>
-
-              <section class="right">
-                <div id="termArea">
-                  <div class="empty">Carregando thesaurus...</div>
-                </div>
-              </section>
-            </main>
-          </section>
-        </div>
-      </section>
+        <button id="searchBtn" class="primary" type="button">Pesquisar</button>
+        <button id="clearSearchBtn" class="light" type="button">Limpar</button>
+      </div>
     </section>
 
+    <section class="workspace">
+      <div class="workspace-title">
+        <strong>Resultado da consulta</strong>
+        <span>Selecione um termo na hierarquia para ver definições, notas, relacionamentos e objetos indexados.</span>
+      </div>
+
+      <div class="workspace-body">
+        <aside class="left">
+          <div class="section-title">Hierarquia</div>
+
+          <div class="tree-toolbar">
+            <button id="collapseBtn" type="button">Recolher</button>
+            <button id="expandClassesBtn" type="button">Expandir classes</button>
+          </div>
+
+          <div id="tree" class="tree-box">
+            <div class="empty">Carregando termos...</div>
+          </div>
+        </aside>
+
+        <div id="splitter" class="splitter" title="Arraste para redimensionar as áreas"></div>
+
+        <section class="right">
+          <div id="termArea">
+            <div class="empty">Carregando thesaurus...</div>
+          </div>
+        </section>
+      </div>
+    </section>
   </div>
 
   <script>
@@ -812,7 +794,6 @@
       initResizableLayout();
 
       searchInput.addEventListener("input", () => {
-        // Atualiza a árvore enquanto digita, mas sem rolar a página.
         renderTree();
       });
 
@@ -827,6 +808,7 @@
 
       clearSearchBtn.addEventListener("click", () => {
         searchInput.value = "";
+        state.expanded = [];
         renderTree();
         searchInput.focus();
       });
@@ -837,8 +819,7 @@
       });
 
       expandClassesBtn.addEventListener("click", () => {
-        // Inicia com as classes principais recolhidas.
-        state.expanded = [];
+        state.expanded = rootTermIds();
         renderTree();
       });
 
@@ -865,16 +846,11 @@
       if (firstMatch) {
         openTerm(firstMatch.id);
       }
-
-      document.querySelector(".consultation-shell")?.scrollIntoView({
-        behavior: "smooth",
-        block: "nearest"
-      });
     }
 
     function setLeftWidth(px) {
       const min = 300;
-      const pageRect = document.querySelector(".page")?.getBoundingClientRect();
+      const pageRect = document.querySelector(".page-shell")?.getBoundingClientRect();
       const pageWidth = pageRect ? pageRect.width : window.innerWidth;
       const max = Math.max(420, pageWidth - 520);
       const width = Math.min(Math.max(Number(px) || 500, min), max);
@@ -903,7 +879,9 @@
 
       splitter.addEventListener("pointermove", event => {
         if (!resizing) return;
-        setLeftWidth(event.clientX - document.querySelector(".page").getBoundingClientRect().left);
+
+        const pageLeft = document.querySelector(".page-shell")?.getBoundingClientRect().left || 0;
+        setLeftWidth(event.clientX - pageLeft);
       });
 
       function stopResize(event) {
@@ -932,7 +910,7 @@
 
     async function loadState() {
       try {
-        setStatus("Carregando dados do TXT...");
+        setStatus("Carregando...");
 
         const response = await fetch(`${ICMG_TXT_URL}?v=${Date.now()}`, {
           cache: "no-store"
@@ -971,7 +949,7 @@
 
         render();
 
-        setStatus(`${state.terms.length.toLocaleString("pt-BR")} termo(s) carregado(s) de ${ICMG_TXT_URL}`);
+        setStatus(`${state.terms.length.toLocaleString("pt-BR")} termo(s)`);
       } catch (error) {
         console.error(error);
 
@@ -1211,7 +1189,7 @@
 
       termArea.innerHTML = `
         <div class="term-header">
-          <h2>${escapeHtml(displayTermName(term))}</h2>
+          <h1>${escapeHtml(displayTermName(term))}</h1>
           <div class="muted">${escapeHtml(termPath(term))}</div>
         </div>
 
@@ -1230,114 +1208,124 @@
           </div>
         </div>
 
-        <div class="tabs">
-          <button class="tab active" type="button" data-tab="definicoes">Definições e notas</button>
-          <button class="tab" type="button" data-tab="relacoes">Relacionamentos</button>
-          <button class="tab" type="button" data-tab="objetos">Objetos indexados</button>
-        </div>
+        <div class="accordion-list">
+          <details class="accordion" open>
+            <summary>Definição</summary>
+            <div class="accordion-content">
+              <div class="field-block">
+                <span class="field-label">Termo</span>
+                <div class="text-block">${escapeHtml(term.termo || "—")}</div>
+              </div>
 
-        <div id="definicoes" class="panel active">
-          <div class="info-box">
-            <strong>Termo</strong>
-            <div class="text-block">${escapeHtml(term.termo || "—")}</div>
-          </div>
+              ${
+                term.conceito
+                  ? `
+                    <div class="field-block">
+                      <span class="field-label">Conceito</span>
+                      <div class="text-block">${escapeHtml(term.conceito)}</div>
+                    </div>
+                  `
+                  : ""
+              }
 
-          ${
-            term.conceito
-              ? `
-                <div class="info-box">
-                  <strong>Conceito</strong>
-                  <div class="text-block">${escapeHtml(term.conceito)}</div>
-                </div>
-              `
-              : ""
-          }
-
-          <div class="info-box">
-            <strong>Definição</strong>
-            <div class="text-block">${escapeHtml(term.definicao || "—")}</div>
-          </div>
-
-          <div class="info-box">
-            <strong>Nota Explicativa</strong>
-            <div class="text-block">${escapeHtml(term.notaEscopo || "—")}</div>
-          </div>
-
-          <div class="info-box">
-            <strong>Nota Histórica</strong>
-            <div class="text-block">${escapeHtml(term.notaUso || "—")}</div>
-          </div>
-        </div>
-
-        <div id="relacoes" class="panel">
-          <div class="info-box">
-            <strong>Termo geral</strong>
-            ${
-              parent
-                ? `<button class="link-button" type="button" data-open-term="${escapeAttr(parent.id)}">${escapeHtml(displayTermName(parent))}</button>`
-                : '<span class="muted">—</span>'
-            }
-          </div>
-
-          <div class="info-box">
-            <strong>Termos específicos</strong>
-            ${
-              children.length
-                ? `
-                  <ul class="small-list">
-                    ${children.map(child => `
-                      <li>
-                        <button class="link-button" type="button" data-open-term="${escapeAttr(child.id)}">
-                          ${escapeHtml(displayTermName(child))}
-                        </button>
-                      </li>
-                    `).join("")}
-                  </ul>
-                `
-                : '<span class="muted">—</span>'
-            }
-          </div>
-
-          <div class="info-box">
-            <strong>Sinônimos não autorizados — UP</strong>
-            ${
-              naoAutorizados.length
-                ? `<ul class="small-list">${naoAutorizados.map(up => `<li>${escapeHtml(up)}</li>`).join("")}</ul>`
-                : '<span class="muted">—</span>'
-            }
-          </div>
-
-          <div class="info-box">
-            <strong>Descritores autorizados relacionados — TR</strong>
-            ${
-              relatedTerms.length
-                ? `
-                  <ul class="small-list">
-                    ${relatedTerms.map(rel => `
-                      <li>
-                        <button class="link-button" type="button" data-open-term="${escapeAttr(rel.id)}">
-                          ${escapeHtml(displayTermName(rel))}
-                        </button>
-                      </li>
-                    `).join("")}
-                  </ul>
-                `
-                : '<span class="muted">—</span>'
-            }
-          </div>
-        </div>
-
-        <div id="objetos" class="panel">
-          <div class="info-box">
-            <strong>Objetos indexados no portal da ALMG</strong>
-            <div class="muted">Os links usam o termo selecionado como parâmetro de busca.</div>
-
-            <div class="object-links">
-              <a href="${escapeAttr(links.normas)}" target="_blank" rel="noopener noreferrer">Normas</a>
-              <a href="${escapeAttr(links.proposicoes)}" target="_blank" rel="noopener noreferrer">Proposições</a>
-              <a href="${escapeAttr(links.pronunciamentos)}" target="_blank" rel="noopener noreferrer">Pronunciamentos</a>
+              <div class="field-block">
+                <span class="field-label">Definição</span>
+                <div class="text-block">${escapeHtml(term.definicao || "—")}</div>
+              </div>
             </div>
-          </div>
+          </details>
+
+          <details class="accordion">
+            <summary>Notas</summary>
+            <div class="accordion-content">
+              <div class="field-block">
+                <span class="field-label">Nota Explicativa</span>
+                <div class="text-block">${escapeHtml(term.notaEscopo || "—")}</div>
+              </div>
+
+              <div class="field-block">
+                <span class="field-label">Nota Histórica</span>
+                <div class="text-block">${escapeHtml(term.notaUso || "—")}</div>
+              </div>
+            </div>
+          </details>
+
+          <details class="accordion">
+            <summary>Relacionamentos</summary>
+            <div class="accordion-content">
+              <div class="field-block">
+                <span class="field-label">Termo geral</span>
+                ${
+                  parent
+                    ? `<button class="link-button" type="button" data-open-term="${escapeAttr(parent.id)}">${escapeHtml(displayTermName(parent))}</button>`
+                    : '<span class="muted">—</span>'
+                }
+              </div>
+
+              <div class="field-block">
+                <span class="field-label">Termos específicos</span>
+                ${
+                  children.length
+                    ? `
+                      <ul class="small-list">
+                        ${children.map(child => `
+                          <li>
+                            <button class="link-button" type="button" data-open-term="${escapeAttr(child.id)}">
+                              ${escapeHtml(displayTermName(child))}
+                            </button>
+                          </li>
+                        `).join("")}
+                      </ul>
+                    `
+                    : '<span class="muted">—</span>'
+                }
+              </div>
+
+              <div class="field-block">
+                <span class="field-label">Sinônimos não autorizados — UP</span>
+                ${
+                  naoAutorizados.length
+                    ? `<ul class="small-list">${naoAutorizados.map(up => `<li>${escapeHtml(up)}</li>`).join("")}</ul>`
+                    : '<span class="muted">—</span>'
+                }
+              </div>
+
+              <div class="field-block">
+                <span class="field-label">Descritores autorizados relacionados — TR</span>
+                ${
+                  relatedTerms.length
+                    ? `
+                      <ul class="small-list">
+                        ${relatedTerms.map(rel => `
+                          <li>
+                            <button class="link-button" type="button" data-open-term="${escapeAttr(rel.id)}">
+                              ${escapeHtml(displayTermName(rel))}
+                            </button>
+                          </li>
+                        `).join("")}
+                      </ul>
+                    `
+                    : '<span class="muted">—</span>'
+                }
+              </div>
+            </div>
+          </details>
+
+          <details class="accordion">
+            <summary>Objetos indexados</summary>
+            <div class="accordion-content">
+              <div class="field-block">
+                <span class="field-label">Objetos indexados no portal da ALMG</span>
+                <div class="muted">Os links usam o termo selecionado como parâmetro de busca.</div>
+
+                <div class="object-links">
+                  <a href="${escapeAttr(links.normas)}" target="_blank" rel="noopener noreferrer">Normas</a>
+                  <a href="${escapeAttr(links.proposicoes)}" target="_blank" rel="noopener noreferrer">Proposições</a>
+                  <a href="${escapeAttr(links.pronunciamentos)}" target="_blank" rel="noopener noreferrer">Pronunciamentos</a>
+                </div>
+              </div>
+            </div>
+          </details>
         </div>
       `;
 
@@ -1345,20 +1333,6 @@
     }
 
     function wireTermArea() {
-      termArea.querySelectorAll(".tab").forEach(tab => {
-        tab.onclick = () => {
-          const target = tab.dataset.tab;
-
-          termArea.querySelectorAll(".tab").forEach(item => {
-            item.classList.toggle("active", item === tab);
-          });
-
-          termArea.querySelectorAll(".panel").forEach(panel => {
-            panel.classList.toggle("active", panel.id === target);
-          });
-        };
-      });
-
       termArea.querySelectorAll("[data-open-term]").forEach(button => {
         button.onclick = () => openTerm(button.dataset.openTerm);
       });
