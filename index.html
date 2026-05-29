@@ -32,63 +32,102 @@
       background: #fff;
     }
 
-    .top-line {
-      height: 3px;
-      background: linear-gradient(
-        to right,
-        #ddd 0,
-        #ddd 72%,
-        var(--red) 72%,
-        var(--red) 78%,
-        #ddd 78%,
-        #ddd 100%
-      );
+    .portal-header {
+      background: #fff;
+      border-bottom: 0;
+    }
+
+    .portal-inner {
+      width: min(var(--page-width), calc(100vw - 56px));
+      min-height: 104px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+    }
+
+    .portal-brand {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      min-width: 0;
+      text-decoration: none;
+      color: #050b14;
+    }
+
+    .portal-brand img {
+      height: 70px;
+      width: auto;
+      display: block;
+      flex: 0 0 auto;
+    }
+
+    .portal-brand-title {
+      font-size: 30px;
+      line-height: 1;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      text-transform: uppercase;
+      color: #050b14;
+      white-space: nowrap;
+    }
+
+    .portal-nav {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 0;
+      flex-wrap: wrap;
+    }
+
+    .portal-nav a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      padding: 0 18px;
+      border-left: 1px solid #ddd;
+      color: #b00000;
+      text-decoration: none;
+      font-size: 17px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .portal-nav a:last-child {
+      border-right: 1px solid #ddd;
+    }
+
+    .portal-nav a:hover {
+      text-decoration: underline;
+    }
+
+    .portal-strip {
+      height: 24px;
+      background: #efefec;
+      border-top: 1px solid #f2f2f2;
     }
 
     .page {
       width: min(var(--page-width), calc(100vw - 56px));
       margin: 0 auto;
-      padding: 28px 0 36px;
-    }
-
-    .brand-row {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 24px;
-    }
-
-    .brand-row img {
-      height: 42px;
-      width: auto;
-      display: block;
-    }
-
-    .brand-row .brand-title {
-      color: var(--blue-dark);
-      font-weight: 700;
-      font-size: 18px;
-      line-height: 1.2;
+      padding: 24px 0 36px;
     }
 
     .hero {
-      margin-bottom: 24px;
+      margin-bottom: 18px;
     }
 
     .hero h1 {
-      margin: 0 0 26px;
-      font-size: 34px;
-      line-height: 1.1;
-      letter-spacing: 0.01em;
-      color: #050b14;
-      text-transform: uppercase;
+      margin: 0;
+      font-size: 0;
+      line-height: 0;
+      height: 0;
+      overflow: hidden;
     }
 
     .hero-text {
-      max-width: 980px;
-      font-size: 20px;
-      line-height: 1.55;
-      margin: 0 0 24px;
+      display: none;
     }
 
     .hero-text strong {
@@ -101,10 +140,7 @@
     }
 
     .hero-list {
-      margin: 0 0 28px 26px;
-      padding: 0;
-      font-size: 19px;
-      line-height: 1.55;
+      display: none;
     }
 
     .hero-list strong {
@@ -559,12 +595,12 @@
     }
 
     .test-note {
-      margin-top: 18px;
-      padding: 14px 16px;
+      margin: 0 0 22px;
+      padding: 14px 18px;
       border-left: 5px solid var(--red);
       background: #fff7f7;
       color: #333;
-      font-size: 14px;
+      font-size: 15px;
       line-height: 1.45;
     }
 
@@ -588,19 +624,43 @@
     }
 
     @media (max-width: 850px) {
+      .portal-inner {
+        width: min(100vw - 20px, var(--page-width));
+        min-height: auto;
+        padding: 14px 0;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      .portal-brand img {
+        height: 56px;
+      }
+
+      .portal-brand-title {
+        font-size: 24px;
+      }
+
+      .portal-nav {
+        justify-content: flex-start;
+        width: 100%;
+      }
+
+      .portal-nav a {
+        min-height: 36px;
+        padding: 0 10px;
+        font-size: 14px;
+        border-left: 0;
+        border-right: 1px solid #ddd;
+      }
+
+      .portal-strip {
+        height: 16px;
+      }
+
       .page {
         width: min(100vw - 20px, var(--page-width));
-        padding-top: 18px;
-      }
-
-      .hero h1 {
-        font-size: 28px;
-        margin-bottom: 18px;
-      }
-
-      .hero-text,
-      .hero-list {
-        font-size: 16px;
+        padding-top: 16px;
       }
 
       .search-card-body {
@@ -655,28 +715,33 @@
 </head>
 
 <body>
-  <div class="top-line"></div>
+  <header class="portal-header">
+    <div class="portal-inner">
+      <a class="portal-brand" href="#" aria-label="Página inicial da consulta ao Thesaurus">
+        <img src="assets/logo-almg.png" alt="Assembleia Legislativa de Minas Gerais">
+        <span class="portal-brand-title">Thesaurus</span>
+      </a>
+
+      <nav class="portal-nav" aria-label="Navegação institucional">
+        <a href="https://www.almg.gov.br/a-assembleia/" target="_blank" rel="noopener noreferrer">A Assembleia</a>
+        <a href="https://www.almg.gov.br/atividade-parlamentar/" target="_blank" rel="noopener noreferrer">Atividade parlamentar</a>
+        <a href="https://www.almg.gov.br/participacao/" target="_blank" rel="noopener noreferrer">Participação</a>
+        <a href="https://www.almg.gov.br/comunicacao/" target="_blank" rel="noopener noreferrer">Comunicação</a>
+        <a href="https://www.almg.gov.br/servicos/" target="_blank" rel="noopener noreferrer">Serviços</a>
+        <a href="https://www.almg.gov.br/transparencia/" target="_blank" rel="noopener noreferrer">Transparência</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="portal-strip"></div>
 
   <div class="page">
-    <div class="brand-row">
-      <img src="assets/logo-almg.png" alt="Assembleia Legislativa de Minas Gerais">
-      <div class="brand-title">Assembleia Legislativa de Minas Gerais</div>
+    <div class="test-note">
+      <strong>Aviso:</strong> esta página não é uma página oficial da ALMG. Trata-se de um ambiente de teste desenvolvido pela Gerência de Informação Legislativa para fins de avaliação da consulta ao thesaurus.
     </div>
 
     <section class="hero">
       <h1>Thesaurus</h1>
-
-      <p class="hero-text">
-        O <strong>Thesaurus</strong> é o
-        <span class="highlight">instrumento de controle da linguagem de indexação</span>.
-        É utilizado para indexar:
-      </p>
-
-      <ul class="hero-list">
-        <li><strong>Normas</strong> jurídicas estaduais</li>
-        <li><strong>Proposições</strong> que tramitam na ALMG</li>
-        <li><strong>Pronunciamentos</strong> proferidos no Plenário pelos parlamentares e por outras autoridades.</li>
-      </ul>
 
       <section class="search-card" aria-label="Pesquisar Thesaurus">
         <div class="search-card-header">
@@ -733,9 +798,6 @@
       </section>
     </section>
 
-    <div class="test-note">
-      <strong>Aviso:</strong> esta página não é uma página oficial da ALMG. Trata-se de um ambiente de teste desenvolvido pela Gerência de Informação Legislativa para fins de avaliação da consulta ao thesaurus.
-    </div>
   </div>
 
   <script>
