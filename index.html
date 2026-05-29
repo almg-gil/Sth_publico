@@ -16,8 +16,8 @@
       --teal-dark: #006676;
       --red: #b40000;
       --blue-dark: #0b2a57;
-      --left-width: 430px;
-      --page-width: 1180px;
+      --left-width: 500px;
+      --page-width: 1680px;
     }
 
     * {
@@ -46,7 +46,7 @@
     }
 
     .page {
-      width: min(var(--page-width), calc(100vw - 32px));
+      width: min(var(--page-width), calc(100vw - 56px));
       margin: 0 auto;
       padding: 28px 0 36px;
     }
@@ -275,14 +275,15 @@
     }
 
     .app {
-      height: 720px;
+      height: min(760px, calc(100vh - 260px));
+      min-height: 620px;
       display: grid;
       grid-template-columns: var(--left-width) 7px 1fr;
     }
 
     .left {
       border-right: 1px solid var(--border);
-      padding: 12px;
+      padding: 14px;
       overflow: auto;
       background: #fff;
     }
@@ -319,7 +320,7 @@
     }
 
     .right {
-      padding: 16px 20px;
+      padding: 20px 26px;
       overflow: auto;
       background: #fff;
     }
@@ -573,7 +574,7 @@
 
     @media (max-width: 1000px) {
       :root {
-        --left-width: 380px;
+        --left-width: 420px;
       }
 
       .hero h1 {
@@ -845,8 +846,10 @@
 
     function setLeftWidth(px) {
       const min = 300;
-      const max = Math.max(380, window.innerWidth - 420);
-      const width = Math.min(Math.max(Number(px) || 430, min), max);
+      const pageRect = document.querySelector(".page")?.getBoundingClientRect();
+      const pageWidth = pageRect ? pageRect.width : window.innerWidth;
+      const max = Math.max(420, pageWidth - 520);
+      const width = Math.min(Math.max(Number(px) || 500, min), max);
 
       document.documentElement.style.setProperty("--left-width", `${width}px`);
       localStorage.setItem(LAYOUT_KEY, String(width));
@@ -895,7 +898,7 @@
       splitter.addEventListener("pointercancel", stopResize);
 
       splitter.addEventListener("dblclick", () => {
-        setLeftWidth(430);
+        setLeftWidth(500);
       });
     }
 
