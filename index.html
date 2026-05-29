@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Thesaurus ALMG</title>
+  <title>Consulta ao Thesaurus GCT-GDI</title>
   <link rel="icon" type="image/png" href="assets/favicom-almg.png">
 
   <style>
@@ -176,42 +176,48 @@
     }
 
     .search-card-body {
-      padding: 26px 30px 28px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 12px 14px;
+      align-items: center;
+      padding: 18px 24px 20px;
     }
 
     .search-field {
       display: grid;
-      grid-template-columns: 130px 1fr;
+      grid-template-columns: 110px 1fr;
       border: 1px solid #bbb;
       border-radius: 6px;
       overflow: hidden;
       background: #fff;
-      margin-bottom: 18px;
+      margin-bottom: 0;
+      min-width: 0;
     }
 
     .search-field label {
       display: flex;
       align-items: center;
-      padding: 0 20px;
+      padding: 0 16px;
       background: #e5e3dc;
       border-right: 1px solid #bbb;
-      min-height: 52px;
-      font-size: 17px;
+      min-height: 44px;
+      font-size: 16px;
     }
 
     .search-field input {
       border: 0;
-      padding: 0 16px;
-      font-size: 17px;
+      padding: 0 14px;
+      font-size: 16px;
       min-width: 0;
       outline: none;
     }
 
     .search-actions {
       display: flex;
-      justify-content: center;
+      justify-content: flex-end;
+      align-items: center;
       gap: 10px;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
     }
 
     button {
@@ -233,7 +239,7 @@
       background: var(--teal);
       font-weight: 700;
       text-transform: uppercase;
-      padding: 12px 24px;
+      padding: 10px 20px;
       border-radius: 6px;
     }
 
@@ -245,21 +251,23 @@
       border-color: #c5c5c5;
       background: #fff;
       color: #222;
-      padding: 10px 18px;
+      padding: 9px 16px;
       border-radius: 6px;
     }
 
     .status-line {
+      grid-column: 1 / -1;
       color: var(--muted);
       font-size: 13px;
       text-align: right;
-      margin: 14px 0 12px;
+      margin: 0;
     }
 
     .consultation-shell {
+      grid-column: 1 / -1;
       border: 1px solid var(--border);
       background: #fff;
-      margin-top: 20px;
+      margin-top: 6px;
     }
 
     .consultation-title {
@@ -282,8 +290,8 @@
     }
 
     .app {
-      height: min(760px, calc(100vh - 260px));
-      min-height: 620px;
+      height: min(800px, calc(100vh - 220px));
+      min-height: 650px;
       display: grid;
       grid-template-columns: var(--left-width) 7px 1fr;
     }
@@ -622,7 +630,14 @@
       }
 
       .search-card-body {
-        padding: 18px 14px;
+        display: grid;
+        grid-template-columns: 1fr;
+        padding: 16px 14px;
+      }
+
+      .search-actions {
+        justify-content: center;
+        flex-wrap: wrap;
       }
 
       .search-field {
@@ -822,7 +837,8 @@
       });
 
       expandClassesBtn.addEventListener("click", () => {
-        state.expanded = rootTermIds();
+        // Inicia com as classes principais recolhidas.
+        state.expanded = [];
         renderTree();
       });
 
@@ -942,7 +958,8 @@
 
         buildIndexes();
 
-        state.expanded = rootTermIds();
+        // Inicia com as classes principais recolhidas.
+        state.expanded = [];
 
         const hashId = decodeURIComponent(location.hash.replace(/^#/, ""));
         if (hashId && getTerm(hashId)) {
