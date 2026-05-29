@@ -114,7 +114,7 @@
     .search-card {
       border: 1px solid var(--border);
       background: var(--soft);
-      margin: 0 0 28px;
+      margin: 0 0 24px;
     }
 
     .search-card-header {
@@ -169,7 +169,7 @@
     }
 
     .search-card-body {
-      padding: 26px 30px 18px;
+      padding: 26px 30px 28px;
     }
 
     .search-field {
@@ -246,12 +246,13 @@
       color: var(--muted);
       font-size: 13px;
       text-align: right;
-      margin: -16px 0 18px;
+      margin: 14px 0 12px;
     }
 
     .consultation-shell {
       border: 1px solid var(--border);
       background: #fff;
+      margin-top: 20px;
     }
 
     .consultation-title {
@@ -274,7 +275,7 @@
     }
 
     .app {
-      height: 680px;
+      height: 720px;
       display: grid;
       grid-template-columns: var(--left-width) 7px 1fr;
     }
@@ -556,6 +557,20 @@
       font-size: 12px;
     }
 
+    .test-note {
+      margin-top: 18px;
+      padding: 14px 16px;
+      border-left: 5px solid var(--red);
+      background: #fff7f7;
+      color: #333;
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .test-note strong {
+      color: #8a0000;
+    }
+
     @media (max-width: 1000px) {
       :root {
         --left-width: 380px;
@@ -633,7 +648,6 @@
 
       .status-line {
         text-align: left;
-        margin-top: -10px;
       }
     }
   </style>
@@ -682,41 +696,45 @@
             <button id="searchBtn" class="primary" type="button">Pesquisar</button>
             <button id="clearSearchBtn" class="light" type="button">Limpar</button>
           </div>
+
+          <div id="headerStatus" class="status-line">Carregando dados...</div>
+
+          <section class="consultation-shell">
+            <div class="consultation-title">
+              <strong>Resultado da consulta</strong>
+              <span>Selecione um termo na hierarquia para ver definições, notas, relacionamentos e objetos indexados.</span>
+            </div>
+
+            <main class="app">
+              <aside class="left">
+                <div class="section-title">Hierarquia</div>
+
+                <div class="tree-toolbar">
+                  <button id="collapseBtn" type="button">Recolher</button>
+                  <button id="expandClassesBtn" type="button">Expandir classes</button>
+                </div>
+
+                <div id="tree" class="tree-box">
+                  <div class="empty">Carregando termos...</div>
+                </div>
+              </aside>
+
+              <div id="splitter" class="splitter" title="Arraste para redimensionar as áreas"></div>
+
+              <section class="right">
+                <div id="termArea">
+                  <div class="empty">Carregando thesaurus...</div>
+                </div>
+              </section>
+            </main>
+          </section>
         </div>
       </section>
     </section>
 
-    <div id="headerStatus" class="status-line">Carregando dados...</div>
-
-    <section class="consultation-shell">
-      <div class="consultation-title">
-        <strong>Resultado da consulta</strong>
-        <span>Selecione um termo na hierarquia para ver definições, notas, relacionamentos e objetos indexados.</span>
-      </div>
-
-      <main class="app">
-        <aside class="left">
-          <div class="section-title">Hierarquia</div>
-
-          <div class="tree-toolbar">
-            <button id="collapseBtn" type="button">Recolher</button>
-            <button id="expandClassesBtn" type="button">Expandir classes</button>
-          </div>
-
-          <div id="tree" class="tree-box">
-            <div class="empty">Carregando termos...</div>
-          </div>
-        </aside>
-
-        <div id="splitter" class="splitter" title="Arraste para redimensionar as áreas"></div>
-
-        <section class="right">
-          <div id="termArea">
-            <div class="empty">Carregando thesaurus...</div>
-          </div>
-        </section>
-      </main>
-    </section>
+    <div class="test-note">
+      <strong>Aviso:</strong> esta página não é uma página oficial da ALMG. Trata-se de um ambiente de teste desenvolvido pela Gerência de Informação Legislativa para fins de avaliação da consulta ao thesaurus.
+    </div>
   </div>
 
   <script>
@@ -821,7 +839,7 @@
 
       document.querySelector(".consultation-shell")?.scrollIntoView({
         behavior: "smooth",
-        block: "start"
+        block: "nearest"
       });
     }
 
